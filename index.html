@@ -3,309 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Letter 2 ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <title>Workout Reference</title>
   <style>
-    :root {
-      --pink: #FFB6C1;
-      --green: #ccffcc;
-      --accent: #4a4a4a;
-      --white: #ffffff;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      background-color: #000;
+      color: #fff;
     }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color: var(--green);
-      color: var(--accent);
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 5%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+      color: #fff;
+    }
+
+    .video-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .video-box {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    header {
-      text-align: center;
-      padding: 30px 20px;
-      background-color: var(--pink);
-      font-family: 'Pacifico', cursive;
-      font-size: 2em;
-      border-bottom: 5px solid var(--white);
-      color: var(--accent);
-    }
-
-    .card {
-      background-color: var(--white);
-      margin: 20px auto;
-      border-radius: 16px;
-      max-width: 500px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      overflow: visible;
-      padding-bottom: 20px;
-      text-align: center;
+    .video-wrapper {
       position: relative;
-    }
-
-    .media-container {
       width: 100%;
-      background-color: #000;
-      position: relative;
+      padding-top: 177.78%;
+      background: #000;
+      border: 2px solid #444;
+      border-radius: 8px;
+      overflow: hidden;
+      pointer-events: none; /* prevents tap interaction on mobile */
     }
 
-    .media-container img,
-    .media-container video {
-      width: 100%;
-      height: auto;
-      display: none;
-    }
-
-    .media-container img.active,
-    .media-container video.active {
-      display: block;
-    }
-
-    .card-text {
-      padding: 30px;
-      font-size: 1.1em;
-      line-height: 1.7;
-      color: var(--accent);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: var(--pink);
-      color: var(--accent);
-      font-size: 0.9em;
-      margin-top: auto;
-    }
-
-    .letters-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 80px 40px;
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: 0 auto 60px;
-    }
-
-    .letters-grid a img {
-      width: 100%;
-      max-width: 100px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      transition: transform 0.3s;
-    }
-
-    .letters-grid a img:hover {
-      transform: scale(1.1);
-    }
-
-    .joyce-wrapper {
-      position: fixed;
-      top: 50%;
-      left: 10%;
-      transform: translate(-50%, -50%) scale(1.8);
-      z-index: 10;
-      transition: transform 0.4s ease, top 0.4s ease, left 0.4s ease;
-      pointer-events: none;
-    }
-
-    .joyce-wrapper img {
-      max-width: 450px;
-      height: auto;
-    }
-
-    .flower {
+    video {
       position: absolute;
-      width: 60px;
-      height: 60px;
-      background-image: url('images/pngflowers.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      z-index: 2;
-      animation: float 6s ease-in-out infinite;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
     }
 
-    @keyframes float {
-      0% { transform: translate(0px, 0px); }
-      50% { transform: translate(20px, -30px); }
-      100% { transform: translate(-20px, 20px); }
+    .label {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #ccc;
     }
 
-    @media (max-width: 768px) {
-      .joyce-wrapper {
-        transform: translate(-50%, -50%) scale(0.7);
+    @media screen and (min-width: 1024px) {
+      .video-container {
+        grid-template-columns: repeat(4, 1fr);
       }
+    }
 
-      .joyce-wrapper img {
-        max-width: 250px;
-      }
-
-      .flower {
-        width: 30px;
-        height: 30px;
+    @media screen and (max-width: 768px) {
+      .video-container {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
 </head>
 <body>
+  <nav>
+    <a href="#push">Push</a>
+    <a href="#pull">Pull</a>
+    <a href="#legs">Legs</a>
+    <a href="#core">Core/Abs</a>
+  </nav>
 
-<header>Letter 2</header>
+  <!-- PUSH SECTION -->
+  <section id="push">
+    <h2>Push Day</h2>
+    <div class="video-container">
+      <div class="video-box"><div class="video-wrapper"><video src="videos/push_smith_overhead.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Smith Machine Overhead Press</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/push_lateral_raises.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Dumbbell Lateral Raises</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/push_cable_front_raise.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Cable Front Raise (Single Arm)</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/push_tricep_extension.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Dumbbell Overhead Tricep Extension</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/push_rope_pushdown.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Cable Rope Tricep Pushdown</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/push_chest_press.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Chest Press Machine</div></div>
+    </div>
+  </section>
 
-<div class="joyce-wrapper" id="joyce">
-  <img src="images/kimo.png" alt="Kareem Floating" />
-</div>
+  <!-- PULL SECTION -->
+  <section id="pull">
+    <h2>Pull Day</h2>
+    <div class="video-container">
+      <div class="video-box"><div class="video-wrapper"><video src="videos/pull_lat_pulldown.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Lat Pulldown Machine (Wide Grip)</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/pull_dumbbell_row.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">One-Arm Dumbbell Row</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/pull_face_pulls.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Cable Face Pulls</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/pull_incline_curl.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Incline Dumbbell Curl</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/pull_rope_hammer_curl.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Cable Rope Hammer Curl</div></div>
+    </div>
+  </section>
 
-<div class="card">
-  <div class="media-container" id="mediaContainer">
-    <!-- MUSIC VIDEO (force autoplay with sound) -->
-    <video id="musicVideo" src="images/page2music.mp4" loop playsinline class="active"></video>
+  <!-- LEGS SECTION -->
+  <section id="legs">
+    <h2>Legs & Glutes Day</h2>
+    <div class="video-container">
+      <div class="video-box"><div class="video-wrapper"><video src="videos/legs_hip_thrust.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Hip Thrust Machine</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/legs_smith_squats.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Smith Machine Squats</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/legs_leg_press.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">45-Degree Leg Press</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/legs_leg_extension.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Leg Extension</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/legs_cable_crunch.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Ab Machine or Cable Crunch</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/legs_45_kickbacks.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">45 Degree Kickbacks</div></div>
+    </div>
+  </section>
 
-    <!-- IMAGE/VIDEO SLIDESHOW -->
-    <img src="images/april11.5.jpeg" alt="Memory 1">
-    <img src="images/feb6.5.jpeg" alt="Memory 2">
-    <img src="images/feb6.6.jpeg" alt="Memory 3">
-    <img src="images/feb9.3.jpeg" alt="Memory 4">
-    <img src="images/feb9.16.jpeg" alt="Memory 5">
-    <img src="images/feb9.19.jpeg" alt="Memory 6">
-    <video src="images/feb14.12.mp4" autoplay muted loop playsinline></video>
-    <img src="images/march22.4.jpeg" alt="Memory 8">
-    <img src="images/march23.5.jpeg" alt="Memory 9">
-    <img src="images/feb6.2.jpeg" alt="Memory 10">
-  </div>
-
-  <div class="card-text">
-    <p>
-      I will never understand why you didn’t have much friends because I don’t know anyone from our friend group that has a negative opinion on you...
-    </p>
-  </div>
-</div>
-
-<div class="letters-grid">
-  <a href="page1.html"><img src="images/readletter.png" alt="Letter 1"></a>
-  <!-- continue for other letters -->
-</div>
-
-<footer>Made with love for Hayaty ✨💕</footer>
-
-<script>
-  // Flower Animation
-  const joyce = document.getElementById('joyce');
-  const flowers = [];
-  for (let i = 0; i < 40; i++) {
-    const flower = document.createElement('div');
-    flower.classList.add('flower');
-    flower.style.top = `${Math.random() * 160 - 30}%`;
-    flower.style.left = `${Math.random() * 160 - 30}%`;
-    joyce.appendChild(flower);
-    flowers.push(flower);
-  }
-
-  flowers.forEach((flower, i) => {
-    const angle = (360 / flowers.length) * i;
-    const orbitRadius = 80;
-    const keyframes = `
-      @keyframes orbit-${i} {
-        0% { transform: rotate(${angle}deg) translateX(${orbitRadius}px) rotate(-${angle}deg); }
-        100% { transform: rotate(${angle + 360}deg) translateX(${orbitRadius}px) rotate(-${angle + 360}deg); }
-      }`;
-    const style = document.createElement('style');
-    style.innerHTML = keyframes;
-    document.head.appendChild(style);
-    flower.style.animation = `orbit-${i} 6s linear infinite`;
-    flower.style.position = 'absolute';
-  });
-
-  // Scroll-based Joyce scaling
-  const isMobile = window.innerWidth <= 768;
-  const initialScale = isMobile ? 0.7 : 1.8;
-  const minScale = 0.4;
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const scale = Math.max(initialScale - scrollY / 600, minScale);
-    joyce.style.transform = `translate(-50%, -50%) scale(${scale})`;
-  });
-
-  // Media slideshow
-  const mediaItems = document.querySelectorAll("#mediaContainer img, #mediaContainer video");
-  let current = 0;
-
-  const indicator = document.createElement("div");
-  indicator.style.position = "absolute";
-  indicator.style.bottom = "10px";
-  indicator.style.left = "50%";
-  indicator.style.transform = "translateX(-50%)";
-  indicator.style.background = "rgba(0,0,0,0.6)";
-  indicator.style.color = "white";
-  indicator.style.padding = "4px 10px";
-  indicator.style.borderRadius = "10px";
-  indicator.style.fontSize = "0.9em";
-  indicator.style.zIndex = "2";
-  document.getElementById("mediaContainer").appendChild(indicator);
-
-  function updateMedia(index) {
-    mediaItems.forEach((item, i) => {
-      item.classList.remove("active");
-      if (item.tagName === "VIDEO") item.pause();
-    });
-    mediaItems[index].classList.add("active");
-    if (mediaItems[index].tagName === "VIDEO") mediaItems[index].play();
-    indicator.textContent = `${index + 1} / ${mediaItems.length}`;
-  }
-
-  updateMedia(current);
-
-  let startX = 0;
-  let endX = 0;
-
-  document.getElementById("mediaContainer").addEventListener("touchstart", e => {
-    startX = e.changedTouches[0].screenX;
-  });
-
-  document.getElementById("mediaContainer").addEventListener("touchend", e => {
-    endX = e.changedTouches[0].screenX;
-    if (endX < startX - 30) {
-      current = (current + 1) % mediaItems.length;
-      updateMedia(current);
-    } else if (endX > startX + 30) {
-      current = (current - 1 + mediaItems.length) % mediaItems.length;
-      updateMedia(current);
-    }
-  });
-
-  // Autoplay with sound handling
-  window.addEventListener('load', () => {
-    const musicVideo = document.getElementById('musicVideo');
-    musicVideo.volume = 1.0;
-    musicVideo.play().then(() => {
-      musicVideo.classList.add('active');
-    }).catch(() => {
-      const button = document.createElement('button');
-      button.textContent = 'Play Music 🎵';
-      button.style.position = 'absolute';
-      button.style.top = '20px';
-      button.style.left = '50%';
-      button.style.transform = 'translateX(-50%)';
-      button.style.zIndex = '999';
-      button.style.padding = '10px 20px';
-      button.style.fontSize = '1rem';
-      button.style.background = '#FFB6C1';
-      button.style.border = 'none';
-      button.style.borderRadius = '8px';
-      document.body.appendChild(button);
-      button.addEventListener('click', () => {
-        musicVideo.play();
-        musicVideo.classList.add('active');
-        button.remove();
-      });
-    });
-  });
-</script>
-
+  <!-- CORE SECTION -->
+  <section id="core">
+    <h2>Core/Abs Day</h2>
+    <div class="video-container">
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_vacuum.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Vacuum Holds</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_rope_crunch.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Cable Rope Crunch</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_plank.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Plank</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_leg_raises.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Leg Raises</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_hanging_raises.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Alternate Hanging Leg Raises</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_russian_twist.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Russian Twist</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_hip_dips.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Side Plank Hip Dips</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_bicycle_crunch.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Bicycle Crunches</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_reverse_crunch.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Reverse Crunches</div></div>
+      <div class="video-box"><div class="video-wrapper"><video src="videos/core_oblique_twist.mp4" autoplay loop muted playsinline preload="auto"></video></div><div class="label">Hanging Oblique Twist</div></div>
+    </div>
+  </section>
 </body>
 </html>
