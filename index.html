@@ -65,22 +65,6 @@
       display: block;
     }
 
-    .video-wrapper-over {
-      position: relative;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 5;
-      margin-bottom: -5px;
-    }
-
-    .video-wrapper-over video {
-      width: 100%;
-      height: auto;
-      display: block;
-      pointer-events: none;
-    }
-
     .card-text {
       padding: 30px;
       font-size: 1.1em;
@@ -177,12 +161,11 @@
 </div>
 
 <div class="card">
-  <!-- 🎵 ACTUAL VISIBLE VIDEO WITH SOUND, PLAYS IMMEDIATELY -->
-  <div class="video-wrapper-over">
-    <video src="images/page2music.mp4" autoplay loop playsinline controls></video>
-  </div>
-
   <div class="media-container" id="mediaContainer">
+    <!-- MUSIC VIDEO FIRST IN MEDIA -->
+    <video src="images/page2music.mp4" autoplay loop controls playsinline></video>
+
+    <!-- IMAGE/VIDEO SLIDESHOW -->
     <img src="images/april11.5.jpeg" class="active" alt="Memory 1">
     <img src="images/feb6.5.jpeg" alt="Memory 2">
     <img src="images/feb6.6.jpeg" alt="Memory 3">
@@ -203,7 +186,6 @@
 </div>
 
 <div class="letters-grid">
-  <!-- 19 letters -->
   <a href="page1.html"><img src="images/readletter.png" alt="Letter 1"></a>
   <a href="page2.html"><img src="images/readletter.png" alt="Letter 2"></a>
   <a href="page3.html"><img src="images/letter.png" alt="Letter 3"></a>
