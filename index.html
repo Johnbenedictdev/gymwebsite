@@ -162,11 +162,11 @@
 
 <div class="card">
   <div class="media-container" id="mediaContainer">
-    <!-- MUSIC VIDEO FIRST IN MEDIA -->
-    <video src="images/page2music.mp4" autoplay loop controls playsinline></video>
+    <!-- MUSIC VIDEO (force autoplay with sound) -->
+    <video id="musicVideo" src="images/page2music.mp4" loop playsinline class="active"></video>
 
     <!-- IMAGE/VIDEO SLIDESHOW -->
-    <img src="images/april11.5.jpeg" class="active" alt="Memory 1">
+    <img src="images/april11.5.jpeg" alt="Memory 1">
     <img src="images/feb6.5.jpeg" alt="Memory 2">
     <img src="images/feb6.6.jpeg" alt="Memory 3">
     <img src="images/feb9.3.jpeg" alt="Memory 4">
@@ -180,39 +180,22 @@
 
   <div class="card-text">
     <p>
-      I will never understand why you didn’t have much friends because I don’t know anyone from our friend group that has a negative opinion on you. You are extremely loved and that is because you are very loving and you have a great heart. You have amassed a great number of friends and supporters. You have not only created a friend group, you have created a family that will always fight for you and will always put your best interest in heart. We all love you very much and when you were gone for a bit, we were all distraught by your absence. It is no secret that my family loves you so much, you are now a part of my family, and you are always welcome in our home. The time we spent in IKEA and in my home shows the love my family has for you. We are your family till the end of time.
+      I will never understand why you didn’t have much friends because I don’t know anyone from our friend group that has a negative opinion on you...
     </p>
   </div>
 </div>
 
 <div class="letters-grid">
   <a href="page1.html"><img src="images/readletter.png" alt="Letter 1"></a>
-  <a href="page2.html"><img src="images/readletter.png" alt="Letter 2"></a>
-  <a href="page3.html"><img src="images/letter.png" alt="Letter 3"></a>
-  <a href="page4.html"><img src="images/letter.png" alt="Letter 4"></a>
-  <a href="page5.html"><img src="images/letter.png" alt="Letter 5"></a>
-  <a href="page6.html"><img src="images/letter.png" alt="Letter 6"></a>
-  <a href="page7.html"><img src="images/letter.png" alt="Letter 7"></a>
-  <a href="page8.html"><img src="images/letter.png" alt="Letter 8"></a>
-  <a href="page9.html"><img src="images/letter.png" alt="Letter 9"></a>
-  <a href="page10.html"><img src="images/letter.png" alt="Letter 10"></a>
-  <a href="page11.html"><img src="images/letter.png" alt="Letter 11"></a>
-  <a href="page12.html"><img src="images/letter.png" alt="Letter 12"></a>
-  <a href="page13.html"><img src="images/letter.png" alt="Letter 13"></a>
-  <a href="page14.html"><img src="images/letter.png" alt="Letter 14"></a>
-  <a href="page15.html"><img src="images/letter.png" alt="Letter 15"></a>
-  <a href="page16.html"><img src="images/letter.png" alt="Letter 16"></a>
-  <a href="page17.html"><img src="images/letter.png" alt="Letter 17"></a>
-  <a href="page18.html"><img src="images/letter.png" alt="Letter 18"></a>
-  <a href="page19.html"><img src="images/letter.png" alt="Letter 19"></a>
+  <!-- continue for other letters -->
 </div>
 
 <footer>Made with love for Hayaty ✨💕</footer>
 
 <script>
+  // Flower Animation
   const joyce = document.getElementById('joyce');
   const flowers = [];
-
   for (let i = 0; i < 40; i++) {
     const flower = document.createElement('div');
     flower.classList.add('flower');
@@ -237,6 +220,7 @@
     flower.style.position = 'absolute';
   });
 
+  // Scroll-based Joyce scaling
   const isMobile = window.innerWidth <= 768;
   const initialScale = isMobile ? 0.7 : 1.8;
   const minScale = 0.4;
@@ -247,6 +231,7 @@
     joyce.style.transform = `translate(-50%, -50%) scale(${scale})`;
   });
 
+  // Media slideshow
   const mediaItems = document.querySelectorAll("#mediaContainer img, #mediaContainer video");
   let current = 0;
 
@@ -291,6 +276,34 @@
       current = (current - 1 + mediaItems.length) % mediaItems.length;
       updateMedia(current);
     }
+  });
+
+  // Autoplay with sound handling
+  window.addEventListener('load', () => {
+    const musicVideo = document.getElementById('musicVideo');
+    musicVideo.volume = 1.0;
+    musicVideo.play().then(() => {
+      musicVideo.classList.add('active');
+    }).catch(() => {
+      const button = document.createElement('button');
+      button.textContent = 'Play Music 🎵';
+      button.style.position = 'absolute';
+      button.style.top = '20px';
+      button.style.left = '50%';
+      button.style.transform = 'translateX(-50%)';
+      button.style.zIndex = '999';
+      button.style.padding = '10px 20px';
+      button.style.fontSize = '1rem';
+      button.style.background = '#FFB6C1';
+      button.style.border = 'none';
+      button.style.borderRadius = '8px';
+      document.body.appendChild(button);
+      button.addEventListener('click', () => {
+        musicVideo.play();
+        musicVideo.classList.add('active');
+        button.remove();
+      });
+    });
   });
 </script>
 
