@@ -37,7 +37,7 @@
 
     .card {
       background-color: var(--white);
-      margin: 40px auto;
+      margin: 20px auto;
       border-radius: 16px;
       max-width: 500px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -66,11 +66,12 @@
     }
 
     .video-wrapper-over {
-      position: absolute;
+      position: relative;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 5;
+      margin-bottom: -5px;
     }
 
     .video-wrapper-over video {
@@ -78,7 +79,6 @@
       height: auto;
       display: block;
       pointer-events: none;
-      opacity: 0.5;
     }
 
     .card-text {
@@ -172,21 +172,17 @@
 
 <header>Letter 2</header>
 
-<!-- 🎵 BACKGROUND MUSIC WITH SOUND -->
-<audio src="images/page2music.mp4" autoplay loop></audio>
-
 <div class="joyce-wrapper" id="joyce">
   <img src="images/kimo.png" alt="Kareem Floating" />
 </div>
 
 <div class="card">
+  <!-- 🎵 ACTUAL VISIBLE VIDEO WITH SOUND, PLAYS IMMEDIATELY -->
+  <div class="video-wrapper-over">
+    <video src="images/page2music.mp4" autoplay loop playsinline controls></video>
+  </div>
+
   <div class="media-container" id="mediaContainer">
-
-    <!-- ✅ OVERLAY VIDEO (with opacity) -->
-    <div class="video-wrapper-over">
-      <video src="images/page2music.mp4" autoplay loop muted playsinline></video>
-    </div>
-
     <img src="images/april11.5.jpeg" class="active" alt="Memory 1">
     <img src="images/feb6.5.jpeg" alt="Memory 2">
     <img src="images/feb6.6.jpeg" alt="Memory 3">
@@ -207,6 +203,7 @@
 </div>
 
 <div class="letters-grid">
+  <!-- 19 letters -->
   <a href="page1.html"><img src="images/readletter.png" alt="Letter 1"></a>
   <a href="page2.html"><img src="images/readletter.png" alt="Letter 2"></a>
   <a href="page3.html"><img src="images/letter.png" alt="Letter 3"></a>
@@ -243,7 +240,7 @@
     flowers.push(flower);
   }
 
-  const createOrbitAnimation = (flower, i) => {
+  flowers.forEach((flower, i) => {
     const angle = (360 / flowers.length) * i;
     const orbitRadius = 80;
     const keyframes = `
@@ -256,9 +253,7 @@
     document.head.appendChild(style);
     flower.style.animation = `orbit-${i} 6s linear infinite`;
     flower.style.position = 'absolute';
-  };
-
-  flowers.forEach((flower, i) => createOrbitAnimation(flower, i));
+  });
 
   const isMobile = window.innerWidth <= 768;
   const initialScale = isMobile ? 0.7 : 1.8;
@@ -314,15 +309,6 @@
       current = (current - 1 + mediaItems.length) % mediaItems.length;
       updateMedia(current);
     }
-  });
-
-  window.addEventListener("DOMContentLoaded", () => {
-    mediaItems.forEach((item) => {
-      if (item.tagName === "VIDEO") {
-        item.setAttribute("playsinline", "");
-        item.play().catch(() => {});
-      }
-    });
   });
 </script>
 
